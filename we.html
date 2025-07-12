@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>WEATHER APP</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .d1 {
+        background: linear-gradient(135deg, #00feba, #5b548a);
+        border-radius: 50px;
+        width: 400px;
+        height: 500px;
+      }
+      .d2 {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        padding-top: 60px;
+      }
+      .d5 img {
+        width: 100px;
+        height: 130px;
+        margin-left: 140px;
+        padding-top: 20px;
+      }
+      .d4 {
+        color: aliceblue;
+      }
+      .d6 {
+        color: aliceblue;
+        margin-top: 20px;
+        margin-left: 150px;
+      }
+      .d7 {
+        display: flex;
+        justify-content: center;
+      }
+      .v1 {
+        position: relative;
+        top: -60px;
+        left: 50px;
+      }
+      .v2 {
+        position: relative;
+        top: 4px;
+        left: 20px;
+      }
+      .d4 button{
+        cursor: pointer;
+        border: 2px solid black;
+       
+      }
+      .d3 input{
+        /* cursor: pointer; */
+        border: 2px solid black;
+      }
+     
+    </style>
+  </head>
+
+  <body>
+    
+    <div class="d1">
+      <div class="d2">
+        <div class="d3">
+          <input type="text" placeholder="enter the city name" />
+        </div>
+
+        <div class="d4">
+         <button><img src="serch button.jpeg" alt="" width="16px" height="14px"/></button> 
+        </div>
+      </div>
+      <div class="d5"><img src="we-removebg-preview.png" alt="" /></div>
+
+      <div class="d6">
+        <h1>22°C</h1>
+        <h2>LONDON</h2>
+      </div>
+
+      <div class="d7">
+        <div class="d8">
+          <img src="OIP-removebg-preview.png" height="120px" width="120px" />
+          <p class="v2">50%</p>
+          <p class="v2">humidity</p>
+        </div>
+
+        <div class="d9">
+          <img src="humidity-removebg-preview.png" alt="" />
+          <p class="v1">15km/h</p>
+          <p class="v1">wind speed</p>
+        </div>
+      </div>
+    </div>
+
+
+    <script>
+
+      const apikey = "35ac920646f73205007ced7681c59818";
+      const apiurl =
+        "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+        
+
+       const d3 = document.querySelector(".d3 input");
+       const d4 = document.querySelector(".d4 button");
+       async function checkWeather(city) {
+       const response = await fetch(apiurl + city + '&appid=${apikey}');
+        var data = await response.json();
+
+        console.log(data);
+        document.querySelector(".city").innerHTML = data.name;
+        document.querySelector(".temp").innerHTML =
+          Math.round(data.main.temp) + "°C";
+        document.querySelector(".humidity").innerHTML = data.humidity + "%";
+        document.querySelector(".wind").innerHTML = data.wind.speed + "km/h";
+      }
+
+      serchBtn.addEventListener("click", () => {
+        checkWeather(serchbox.value);
+      });
+      checkWeather();
+
+
+
+      
+
+    </script>
+  </body>
+</html>
